@@ -55,17 +55,18 @@ const App =  () => {
       valor: addFormData.valor,
       userId:user
     }
-    //'http://localhost:3333/cadprod/'
+    
     const data = await axios.post('https://backpl.herokuapp.com/cadprod/',{
       newProduto       
     }).then(()=>{
-        setMessage(data.data.message)  
-         //`http://localhost:3333/todos/${user}`
+
+        setMessage(data.data.message) 
         axios.get(`https://backpl.herokuapp.com/todos/${user}`).then((update)=>{
         const resultados = (update.data.resultados)
         setProdutos(resultados) 
         }).catch((err)=> console.log(err)) 
-    }).catch((data)=>{
+
+    }).catch(()=>{
       setMessage('Os campos nome e descrição devem conter somente letras, e o campo quantidade e valor apenas numeros inteiros.')   
     })    
   };
