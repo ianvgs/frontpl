@@ -37,16 +37,14 @@ class Login extends Component {
         })
     }
 
-    handleSubmit = async () => { 
-        
+    handleSubmit = async () => {         
         const data = await axios.post('https://backpl.herokuapp.com/login/',{
             email: this.state.email,
             senha:this.state.senha
         })    
         if(data.data.erro){
             return    this.setState({message:data.data.erro})
-        }  
-                
+        }                  
         this.setState({token:data.data.token})
         this.setState({userId:data.data.userId})
         //console.log(this.state.token)
@@ -57,8 +55,6 @@ class Login extends Component {
         this.setState({auth:'authenticated'});
         
     }
-
-
     handleSubmits = async () => {  
         history.push('/register');
     }    
