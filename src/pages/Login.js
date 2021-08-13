@@ -4,7 +4,7 @@ import history from '../history'
 import teste from '../imagens/1a519878410464.png';
 import {Link, Redirect} from 'react-router-dom';
 import '../App.css'
-const url = process.env.URL
+const url = 'https://backpl.herokuapp.com/'
 
 
 
