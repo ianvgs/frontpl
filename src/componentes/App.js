@@ -4,7 +4,7 @@ import "./App.css";
 import ReadOnlyRow from "./CompForm/ReadOnlyRow";
 import EditableRow from "./CompForm/EditableRow";
 import axios from 'axios'
-const url = process.env.URL
+
 
 
 
@@ -56,12 +56,12 @@ const App =  () => {
       userId:user
     }
     //'http://localhost:3333/cadprod/'
-    const data = await axios.post('http://localhost:3333/cadprod/',{
+    const data = await axios.post('https://backpl.herokuapp.com/cadprod/',{
       newProduto       
     }).then(()=>{
         setMessage(data.data.message)  
          //`http://localhost:3333/todos/${user}`
-        axios.get(`http://localhost:3333/todos/${user}`).then((update)=>{
+        axios.get(`https://backpl.herokuapp.com/todos/${user}`).then((update)=>{
         const resultados = (update.data.resultados)
         setProdutos(resultados) 
         }).catch((err)=> console.log(err)) 
@@ -91,7 +91,7 @@ const App =  () => {
       userId:user
     };    
     //'http://localhost:3333/altprod/'
-    const data = await axios.patch('http://localhost:3333/altprod/',{
+    const data = await axios.patch('https://backpl.herokuapp.com/altprod/',{
       editedContact      
     }); 
     if(data.data.erro){
@@ -100,7 +100,7 @@ const App =  () => {
     console.log('ta consolano o sucesso.')
     setMessage(data.data.message)
     //`http://localhost:3333/todos/${user}`
-    await axios.get(`http://localhost:3333/todos/${user}`).then((update)=>{
+    await axios.get(`https://backpl.herokuapp.com/${user}`).then((update)=>{
       const resultados = (update.data.resultados)
       setProdutos(resultados) 
     }).catch((err)=> console.log(err))   
@@ -131,7 +131,7 @@ const App =  () => {
   const handleDeleteClick = async (contactid) => { 
     const idr = contactid;  
     //'http://localhost:3333/delprod/'
-    const data = await axios.post('http://localhost:3333/delprod/',{
+    const data = await axios.post('https://backpl.herokuapp.com/delprod/',{
       id:idr,userId:user
     });     
     if(data.data.erro){
@@ -140,7 +140,7 @@ const App =  () => {
     console.log('ta consolano o sucesso.')
     setMessage(data.data.message)
       //`http://localhost:3333/todos/${user}`
-    await axios.get(`http://localhost:3333/todos/${user}`).then((update)=>{
+    await axios.get(`https://backpl.herokuapp.com/todos/${user}`).then((update)=>{
       const resultados = (update.data.resultados)
       setProdutos(resultados) 
     }).catch((err)=> console.log(err)) 
@@ -157,7 +157,7 @@ const App =  () => {
     axios.defaults.headers.Authorization = `Bearer ${token1}`;
     const id = sessionStorage.getItem('userId');
     //`http://localhost:3333/todos/${id}`
-    await axios.get(`http://localhost:3333/todos/${id}`).then((data)=>{
+    await axios.get(`https://backpl.herokuapp.com/todos/${id}`).then((data)=>{
       const resultados = (data.data.resultados) 
       if(!data.data.resultados){
         setMessage('Você não possui produtos cadastrados, user o formulario acima para cadastramento.')

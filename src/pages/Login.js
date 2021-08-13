@@ -4,11 +4,6 @@ import history from '../history'
 import teste from '../imagens/1a519878410464.png';
 import {Link, Redirect} from 'react-router-dom';
 import '../App.css'
-const url = 'https://backpl.herokuapp.com/'
-
-
-
-
 
 class Login extends Component { 
         
@@ -43,8 +38,8 @@ class Login extends Component {
     }
 
     handleSubmit = async () => { 
-        ///'http://localhost:3333/login/'
-        const data = await axios.post('http://localhost:3333/login/',{
+        
+        const data = await axios.post('https://backpl.herokuapp.com/login/',{
             email: this.state.email,
             senha:this.state.senha
         })    
