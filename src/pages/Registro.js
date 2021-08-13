@@ -43,9 +43,8 @@ class Registro extends Component {
         })
     }
 
-
-    handleSubmit = async () => { 
         //'http://localhost:3333/register/'
+    handleSubmit = async () => {         
         const data = await axios.post(`${url}/register`,{
             nome: this.state.nome,
             email: this.state.email,
