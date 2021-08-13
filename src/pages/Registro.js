@@ -4,9 +4,11 @@ import history from '../history'
 import teste from '../imagens/1a519878410464.png';
 import '../App.css'
 import {Link} from 'react-router-dom';
-const url = process.env.URL
 import dotenv from 'dotenv'
 dotenv.config();
+const url = process.env.URL
+
+
 
 class Registro extends Component {    
     
