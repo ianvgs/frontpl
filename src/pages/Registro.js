@@ -4,7 +4,9 @@ import history from '../history'
 import teste from '../imagens/1a519878410464.png';
 import '../App.css'
 import {Link} from 'react-router-dom';
-
+const url = process.env.URL
+import dotenv from 'dotenv'
+dotenv.config();
 
 class Registro extends Component {    
     
@@ -43,7 +45,8 @@ class Registro extends Component {
 
 
     handleSubmit = async () => { 
-        const data = await axios.post('http://localhost:3333/register/',{
+        //'http://localhost:3333/register/'
+        const data = await axios.post(`${url}/register`,{
             nome: this.state.nome,
             email: this.state.email,
             senha: this.state.senha,
@@ -56,10 +59,7 @@ class Registro extends Component {
         if(data.data.userinfo.id){
             this.setState({cadastrado:data.data.userinfo.id,message:data.data.message})
             history.push('/login');
-        }   
-
-          
-
+        } 
     }
 
     

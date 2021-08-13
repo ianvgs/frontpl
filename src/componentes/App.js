@@ -4,6 +4,7 @@ import "./App.css";
 import ReadOnlyRow from "./CompForm/ReadOnlyRow";
 import EditableRow from "./CompForm/EditableRow";
 import axios from 'axios'
+const url = process.env.URL
 
 
 
@@ -54,11 +55,13 @@ const App =  () => {
       valor: addFormData.valor,
       userId:user
     }
-    const data = await axios.post('http://localhost:3333/cadprod/',{
+    //'http://localhost:3333/cadprod/'
+    const data = await axios.post(`${url}/cadprod`,{
       newProduto       
     }).then(()=>{
-        setMessage(data.data.message)   
-        axios.get(`http://localhost:3333/todos/${user}`).then((update)=>{
+        setMessage(data.data.message)  
+         //`http://localhost:3333/todos/${user}`
+        axios.get(`${url}/todos/${user}`).then((update)=>{
         const resultados = (update.data.resultados)
         setProdutos(resultados) 
         }).catch((err)=> console.log(err)) 
@@ -87,7 +90,8 @@ const App =  () => {
       valor: editFormData.valor,
       userId:user
     };    
-    const data = await axios.patch('http://localhost:3333/altprod/',{
+    //'http://localhost:3333/altprod/'
+    const data = await axios.patch(`${url}/altprod/`,{
       editedContact      
     }); 
     if(data.data.erro){
@@ -95,7 +99,8 @@ const App =  () => {
     } else{
     console.log('ta consolano o sucesso.')
     setMessage(data.data.message)
-    await axios.get(`http://localhost:3333/todos/${user}`).then((update)=>{
+    //`http://localhost:3333/todos/${user}`
+    await axios.get(`${url}/todos/${user}`).then((update)=>{
       const resultados = (update.data.resultados)
       setProdutos(resultados) 
     }).catch((err)=> console.log(err))   
@@ -125,8 +130,8 @@ const App =  () => {
   ///////////////////////////////////////////////////////////////////////////////
   const handleDeleteClick = async (contactid) => { 
     const idr = contactid;  
-    
-    const data = await axios.post('http://localhost:3333/delprod/',{
+    //'http://localhost:3333/delprod/'
+    const data = await axios.post(`${url}/delprod/`,{
       id:idr,userId:user
     });     
     if(data.data.erro){
@@ -134,8 +139,8 @@ const App =  () => {
     } else{
     console.log('ta consolano o sucesso.')
     setMessage(data.data.message)
-
-    await axios.get(`http://localhost:3333/todos/${user}`).then((update)=>{
+      //`http://localhost:3333/todos/${user}`
+    await axios.get(`${url}/todos/${user}`).then((update)=>{
       const resultados = (update.data.resultados)
       setProdutos(resultados) 
     }).catch((err)=> console.log(err)) 
@@ -151,7 +156,8 @@ const App =  () => {
     const token1 = await JSON.parse(token)
     axios.defaults.headers.Authorization = `Bearer ${token1}`;
     const id = sessionStorage.getItem('userId');
-    await axios.get(`http://localhost:3333/todos/${id}`).then((data)=>{
+    //`http://localhost:3333/todos/${id}`
+    await axios.get(`${url}/todos/${id}`).then((data)=>{
       const resultados = (data.data.resultados) 
       if(!data.data.resultados){
         setMessage('Você não possui produtos cadastrados, user o formulario acima para cadastramento.')

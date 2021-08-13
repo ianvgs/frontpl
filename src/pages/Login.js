@@ -4,6 +4,7 @@ import history from '../history'
 import teste from '../imagens/1a519878410464.png';
 import {Link, Redirect} from 'react-router-dom';
 import '../App.css'
+const url = process.env.URL
 
 
 
@@ -42,7 +43,8 @@ class Login extends Component {
     }
 
     handleSubmit = async () => { 
-        const data = await axios.post('http://localhost:3333/login/',{
+        ///'http://localhost:3333/login/'
+        const data = await axios.post(`${url}/register`,{
             email: this.state.email,
             senha:this.state.senha
         })    
