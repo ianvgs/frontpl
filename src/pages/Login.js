@@ -44,7 +44,7 @@ class Login extends Component {
 
     handleSubmit = async () => { 
         ///'http://localhost:3333/login/'
-        const data = await axios.post(`${url}/register`,{
+        const data = await axios.post('http://localhost:3333/login/',{
             email: this.state.email,
             senha:this.state.senha
         })    
