@@ -48,7 +48,7 @@ class Registro extends Component {
 
         
     handleSubmit = async () => {         
-        const data = await axios.post(`${this.state.url}/register/`,{
+        const data = await axios.post('https://backpl.herokuapp.com/register/',{
             nome: this.state.nome,
             email: this.state.email,
             senha: this.state.senha,

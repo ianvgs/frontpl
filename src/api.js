@@ -4,5 +4,5 @@ dotenv.config();
 const url = process.env.BACKURL
 
 export default axios.create({
-  baseURL: url
+  baseURL: 'https://backpl.herokuapp.com/'
 });
