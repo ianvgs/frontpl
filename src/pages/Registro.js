@@ -6,9 +6,9 @@ import '../App.css'
 import {Link} from 'react-router-dom';
 import dotenv from 'dotenv'
 dotenv.config();
-const url = process.env.URL
 
 
+const url = process.env.BACKURL
 
 class Registro extends Component {    
     
@@ -45,9 +45,9 @@ class Registro extends Component {
         })
     }
 
-        //'http://localhost:3333/register/'
+        
     handleSubmit = async () => {         
-        const data = await axios.post(`${url}/register`,{
+        const data = await axios.post(`${url}/register/`,{
             nome: this.state.nome,
             email: this.state.email,
             senha: this.state.senha,
