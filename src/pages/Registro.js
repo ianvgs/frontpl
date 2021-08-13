@@ -8,7 +8,7 @@ import dotenv from 'dotenv'
 dotenv.config();
 
 
-const url = process.env.BACKURL
+
 
 class Registro extends Component {    
     
@@ -20,7 +20,8 @@ class Registro extends Component {
             senha: '',
             confirmaSenha:'',
             message:'',
-            cadastrado:''        
+            cadastrado:'',
+            url: process.env.BACKURL       
         } 
     } 
     
@@ -47,7 +48,7 @@ class Registro extends Component {
 
         
     handleSubmit = async () => {         
-        const data = await axios.post(`${url}/register/`,{
+        const data = await axios.post(`${this.state.url}/register/`,{
             nome: this.state.nome,
             email: this.state.email,
             senha: this.state.senha,
