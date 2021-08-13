@@ -54,21 +54,23 @@ const App =  () => {
       quantidade: addFormData.quantidade,
       valor: addFormData.valor,
       userId:user
-    }
-    
-    const data = await axios.post('https://backpl.herokuapp.com/cadprod/',{
-      newProduto       
-    }).then(()=>{
+    }  
 
-        setMessage(data.data.message) 
-        axios.get(`https://backpl.herokuapp.com/todos/${user}`).then((update)=>{
+    try {
+      const data = await axios.post('https://backpl.herokuapp.com/cadprod/',{
+      newProduto       
+      })
+      setMessage(data.data.message)
+      axios.get(`https://backpl.herokuapp.com/todos/${user}`).then((update)=>{
         const resultados = (update.data.resultados)
         setProdutos(resultados) 
-        }).catch((err)=> console.log(err)) 
-
-    }).catch(()=>{
-      setMessage('Os campos nome e descrição devem conter somente letras, e o campo quantidade e valor apenas numeros inteiros.')   
-    })    
+      })
+    } catch (error) {
+      (console.error('Algo errado'))
+      setMessage('Os campos nome e descrição devem conter somente letras, e o campo quantidade e valor apenas numeros inteiros.')        
+    }
+      
+        
   };
   ///////////////////////////////////////////////////////////////////////
   ///////////////////////////////////////////////////////////////////////
